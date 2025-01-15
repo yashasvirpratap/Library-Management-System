@@ -65,6 +65,13 @@ To run this project, you'll need:
   library.returnBook("9876543210", "P001");  // Return by ISBN for patron
   ```
 
+## Class Diagram
+
+<!-- ![image](https://github.com/user-attachments/assets/833a4f91-3b1f-43f7-99e2-ce3919015d9a) -->
+<img src="https://github.com/yashasvirpratap/Library-Management-System/blob/main/LMS_ClassDiagram.png" alt="Library Image" width="500"/>
+
+
+
 ## Challenges Faced
 As a backend fresher, the key challenges were:
 - Understanding and applying design patterns like Singleton, Factory, and Strategy.
