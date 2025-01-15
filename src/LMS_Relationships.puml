@@ -1,0 +1,39 @@
+@startuml
+class Library {
+    + getInstance(): Library
+    + addBook()
+    + removeBook()
+    + searchBooks()
+    + checkOutBook()
+    + returnBook()
+}
+
+class Book {
+}
+
+class Patron {
+}
+
+interface SearchStrategy {
+}
+
+class SearchByTitle implements SearchStrategy {
+}
+
+class SearchByAuthor implements SearchStrategy {
+}
+
+class SearchByISBN implements SearchStrategy {
+}
+
+class Logger {
+}
+
+Library "1" o-- "many" Book : Aggregation
+Library "1" o-- "many" Patron : Aggregation
+Library "1" --> "1" Logger : Composition
+Library --> SearchStrategy : Dependency (DIP)
+SearchStrategy <|-- SearchByTitle : Inheritance
+SearchStrategy <|-- SearchByAuthor : Inheritance
+SearchStrategy <|-- SearchByISBN : Inheritance
+@enduml

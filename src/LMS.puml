@@ -1,0 +1,74 @@
+@startuml
+class Library {
+    - instance: Library
+    - books: List<Book>
+    - patrons: List<Patron>
+    - logger: Logger
+    + getInstance(): Library
+    + addBook(book: Book): void
+    + removeBook(book: Book): void
+    + searchBooks(strategy: SearchStrategy): List<Book>
+    + checkOutBook(book: Book, patron: Patron): void
+    + returnBook(book: Book, patron: Patron): void
+}
+
+class Book {
+    - title: String
+    - author: String
+    - ISBN: String
+    - publicationYear: int
+    - status: BookStatus
+    + getTitle(): String
+    + getAuthor(): String
+    + getISBN(): String
+    + getStatus(): BookStatus
+    + setStatus(status: BookStatus): void
+}
+
+enum BookStatus {
+    AVAILABLE
+    BORROWED
+}
+
+class Patron {
+    - name: String
+    - patronId: String
+    - borrowedBooks: List<Book>
+    + getName(): String
+    + getPatronId(): String
+    + getBorrowedBooks(): List<Book>
+}
+
+interface SearchStrategy {
+    + search(library: Library, query: String): List<Book>
+}
+
+class SearchByTitle implements SearchStrategy {
+    + search(library: Library, query: String): List<Book>
+}
+
+class SearchByAuthor implements SearchStrategy {
+    + search(library: Library, query: String): List<Book>
+}
+
+class SearchByISBN implements SearchStrategy {
+    + search(library: Library, query: String): List<Book>
+}
+
+class BookFactory {
+    + createBook(title: String, author: String, ISBN: String, publicationYear: int): Book
+}
+
+class Logger {
+    + log(message: String): void
+}
+
+Library "1" --> "many" Book
+Library "1" --> "many" Patron
+Library "1" --> "1" Logger
+Library "1" --> "1" SearchStrategy
+SearchStrategy <|-- SearchByTitle
+SearchStrategy <|-- SearchByAuthor
+SearchStrategy <|-- SearchByISBN
+Book "1" --> "1" BookStatus
+@enduml
